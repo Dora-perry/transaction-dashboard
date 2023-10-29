@@ -1,15 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import Button from './components/Button';
+import Modal from './components/Modal';
+import download from './assets/download.svg';
 
 function App() {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleButtonClick = () => {
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
 
   return (
-   <div className=''>My name is theodora
+    <div className="">
+      <Button
+        label="Filter"
+        icon={download}
+        onClick={handleButtonClick}
+        className="border w-[80px] h-[5px] rounded-[100px]"
+      />
 
-   </div>
-  )
+      {modalVisible && <Modal handleClose={handleCloseModal} />}
+    </div>
+  );
 }
 
-export default App
+export default App;
+
+
+ {/* <Navbar/> */}
+    {/* <Charts/> */}
+    {/* <Revenue/> */}
+    {/* <FilterModal/> */}
