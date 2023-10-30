@@ -7,21 +7,7 @@ const TransactionList = () => {
     const {data, loading} = useRevenueData('/transactions')
     console.log(data);
 
-    const info =  {
-        "amount": 500,
-        "metadata": {
-          "name": "John Doe",
-          "type": "digital_product",
-          "email": "johndoe@example.com",
-          "quantity": 1,
-          "country": "Nigeria",
-          "product_name": "Rich Dad Poor Dad"
-        },
-        "payment_reference": "c3f7123f-186f-4a45-b911-76736e9c5937",
-        "status": "successful",
-        "type": "deposit",
-        "date": "2022-03-03"
-      }
+    
     
   return (
     <div className='mt-5'>

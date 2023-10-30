@@ -8,7 +8,16 @@ import useRevenueData from '../hooks/useRevenueData'
 
 const Transaction = () => {
     const[isOpenModal, setIsModalOpen] = useState(false)
+    
     const {data, loading} = useRevenueData('/transactions')
+
+    const handleStartDateChange = (date) => {
+        setStartDate(date);
+      };
+    
+      const handleEndDateChange = (date) => {
+        setEndDate(date);
+      };
     console.log(data);
 
     const openModal = () => {
@@ -19,13 +28,15 @@ const Transaction = () => {
         setIsModalOpen(false);
       };
 
+      const [transactionTime, setTransactionTime] = useState('all time')
+
 
   return (
     <div className="flex flex-col pt-20">
     <div className="flex justify-between">
       <div className="text-neutral-900 flex flex-col ">
         <p className="font-[degular] font-bold text-[18px]">{data.length} Transactions</p>
-        <p className="font-[degular] text-[10px] text-gray-600">Your transactions for the last 7 days</p>
+        <p className="font-[degular] text-[10px] text-gray-600">Your transactions for {transactionTime}</p>
       </div>
       <div className="flex gap-2">
         <button className="bg-gray-100 text-[12px] justify-center items-center flex rounded-full px-5 py-5 w-[85px] h-[35px]  font-[degular] font-bold" onClick={openModal}>
@@ -36,7 +47,7 @@ const Transaction = () => {
           Export list
           <img src={download} alt="download" />
         </button>
-        <Modal isOpen={isOpenModal} onClose={closeModal} />
+        <Modal isOpen={isOpenModal} onClose={closeModal}/>
       </div>
     </div>
     <div className="w-full border-t mt-4 border-gray-300" />

@@ -12,6 +12,7 @@ import productIcon from '../assets/Product Icons.svg'
 import productIcon2 from '../assets/ProductIcon.svg'
 import productIcon1 from '../assets/ProductIcons.svg'
 import AppsDropdown from './AppsDropdown'
+import expand from '../assets/expand_more.svg'
 
 
 import './style.css'
@@ -56,17 +57,18 @@ const Navbar = () => {
             <p>CRM</p>
         </li>
         <li>
-         {/* <div className={`flex items-center p-2 gap-1 rounded-full cursor-pointer ${appsButtonClicked ? "bg-neutral-900" : "hover:bg-gray-200"}`}
+         <div className={`flex items-center p-2 gap-1 rounded-full cursor-pointer ${appsButtonClicked ? "bg-neutral-900" : "hover:bg-gray-200"}`}
           onClick={handleClick}>
                     <img src={widgetIcon} alt="home" />
             <p className={`font-[degularsemibold] text-base ${appsButtonClicked ? "text-white" : "text-gray-600"}`}>
                 App {appsButtonClicked ? " | Link in Bio" : ""}
              </p>
             {appsButtonClicked && <img src={expand} alt="expand" />}
-              </div> */}
+              </div>
+             {isDropdown && <AppsDropdown />} 
                   </li>
         </ul>
-        <ul className='flex gap-2 items-center justify-center'>
+        <ul className='flex gap-4 items-center justify-center'>
            <li><img src={notificationIcon} alt="notification" /></li>
            <li><img src={chatIcon} alt="chat" /></li>
            <li><UserInfo/></li>

@@ -16,18 +16,18 @@ const Charts = () => {
         <div>
           <div className="flex gap-16 items-center">
             <div className="flex flex-col gap-2">
-              <p className="text-gray-600 font-[degularmedium] text-sm">Available Balance</p>
-              <p className="text-neutral-900 font-bold text-4xl font-[degularbold]">{balance}</p>
+              <p className="text-gray-600  text-[8px]">Available Balance</p>
+              <p className="text-neutral-900 text-[24px] font-bold">USD{balance}</p>
             </div>
-            <button className="bg-neutral-900 w-[167px] text-white px-7 py-3.5 rounded-full font-[degularsemibold]">Withdraw</button>
+            <button className="bg-neutral-900 w-[120px] text-white px-4 py-2 font-semibold rounded-full text-[14px]">Withdraw</button>
           </div>
           <div className="pt-20 flex flex-col gap-4">
             <img src={line} alt="line" />
             <div className="flex flex-col gap-2">
               <div className="w-full border-t border-gray-300" />
               <div className="flex justify-between font-[degularmedium] text-base text-gray-600">
-                <p>Apr 1 , 2022</p>
-                <p>Apr 30 , 2022</p>
+                <p className='text-[12px]' >Apr 1 , 2022</p>
+                <p  className='text-[12px]'>Apr 30 , 2022</p>
               </div>
             </div>
           </div>
