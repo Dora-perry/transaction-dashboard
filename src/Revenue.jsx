@@ -14,8 +14,8 @@ const Revenue = () => {
     const { balance, total_payout, total_revenue, pending_payout, ledger_balance } = data;
 
     return (
-        <div>
-            <div className='flex flex-col w-48 border'>
+        <div className='h-full'>
+            <div className='flex flex-col w-48  mb-4'>
                 <div className='flex justify-between items-center'>
                     <span className='text-[#56616B] text-[8px]'>Ledger Balance</span>
                     <div><img src={infoIcon} alt="info" /></div>
@@ -23,7 +23,7 @@ const Revenue = () => {
                 <div className='text-[#131316] font-bold'> USD {ledger_balance}</div>
 
             </div>
-            <div className='flex flex-col w-48 border'>
+            <div className='flex flex-col w-48  mb-4'>
                 <div className='flex justify-between items-center'>
                     <span className='text-[#56616B] text-[8px]'>Total Payout</span>
                     <div><img src={infoIcon} alt="info" /></div>
@@ -32,7 +32,7 @@ const Revenue = () => {
 
                
             </div>
-            <div className='flex flex-col w-48 border'>
+            <div className='flex flex-col w-48  mb-4'>
                 <div className='flex justify-between items-center'>
                     <span className='text-[#56616B] text-[8px]'>Total Revenue</span>
                     <div><img src={infoIcon} alt="info" /></div>
@@ -41,7 +41,7 @@ const Revenue = () => {
 
                
             </div>
-            <div className='flex flex-col w-48 border'>
+            <div className='flex flex-col w-48  mb-4'>
                 <div className='flex justify-between items-center'>
                     <span className='text-[#56616B] text-[8px]'>Pending Payout</span>
                     <div><img src={infoIcon} alt="info" /></div>
@@ -51,7 +51,7 @@ const Revenue = () => {
                 
                
             </div>
-           
+
         </div>
     );
 };

@@ -7,10 +7,10 @@ import widgetIcon from '../assets/widgets.svg'
 import notificationIcon from '../assets/notifications.svg'
 import chatIcon from '../assets/chat.svg'
 import paymentIcon from '../assets/payments.svg'
-import appbarList from '../assets/app-bar-list.png'
-import productIcon from '../assets/Product Icons.png'
-import productIcon2 from '../assets/ProductIcon.png'
-import productIcon1 from '../assets/ProductIcons.png'
+import appbarList from '../assets/app-bar-list.svg'
+import productIcon from '../assets/Product Icons.svg'
+import productIcon2 from '../assets/ProductIcon.svg'
+import productIcon1 from '../assets/ProductIcons.svg'
 import AppsDropdown from './AppsDropdown'
 
 
@@ -73,11 +73,11 @@ const Navbar = () => {
 
         </ul>
 
-        <div className='flex flex-col fixed top-[35%] items-center'>
+        <div className='flex flex-col left-4 fixed top-[39%] items-center shadow rounded-full pb-2'>
             
-                <div><img src={appbarList} alt="appbar"/></div>
-                <div><img src={productIcon} alt=""/></div>
-                <div><img src={productIcon1} alt="" /></div>
+                <div className='mb-3' ><img src={appbarList} alt="appbar"/></div>
+                <div className='mb-4'><img src={productIcon} alt=""/></div>
+                <div className='mb-4'><img src={productIcon1} alt="" /></div>
                 <div><img src={productIcon2} alt="" /></div>
             
         </div>

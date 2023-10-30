@@ -1,8 +1,8 @@
 import React from 'react'
-import appbarList from '../assets/app-bar-list.png'
-import productIcon from '../assets/Product Icons.png'
-import productIcon2 from '../assets/ProductIcon.png'
-import productIcon1 from '../assets/ProductIcons.png'
+import appbarList from '../assets/app-bar-list.svg'
+import productIcon from '../assets/Product Icons.svg'
+import productIcon2 from '../assets/ProductIcon.svg'
+import productIcon1 from '../assets/ProductIcons.svg'
 
 const AppsDropdown = () => {
   return (
