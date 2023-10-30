@@ -21,7 +21,7 @@ const useRevenueData = (endpoint) =>{
 
         }
         fetchData()
-    }, [endpoint])
+    }, [])
     return  {data, loading}
 
 

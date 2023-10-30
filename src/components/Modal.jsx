@@ -2,6 +2,7 @@ import React from 'react'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import download from '../assets/download.svg'
+import {IoIosClose} from 'react-icons/io'
 
 const Modal = ({onClose, isOpen}) => {
     // const [startDate, setStartDate] = useState(null);
@@ -19,9 +20,9 @@ const Modal = ({onClose, isOpen}) => {
   return (
     <div className="fixed top-2 right-0 flex justify-center items-center z-50 bg-black bg-opacity-50">
       <div className="bg-white p-4 rounded shadow-lg">
-        <div>
+        <div className='flex justify-between'>
         <h2 className="text-[16px] font-bold mb-4">Filter </h2>
-        <img src="" alt="" />
+        <IoIosClose onClick={onClose}/>
         </div>
         {/* Filter options */}
         <div className='flex gap-2 mb-4' >
@@ -51,9 +52,7 @@ const Modal = ({onClose, isOpen}) => {
             <button className='flex items-center justify-center bg-[#131316] text-white px-6 rounded-full'>apply</button>
             
             </div>       
-        
-        <button onClick={onClose}>Close</button>
-      </div>
+              </div>
     </div>
   )
 }

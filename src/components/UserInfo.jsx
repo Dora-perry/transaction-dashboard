@@ -6,7 +6,8 @@ const UserInfo = () => {
     const [isOpen, setIsOpen]= useState(false);
     const toggleDropdown = ()=>{
         setIsOpen(!isOpen)
-        const { userData, loading } = useFetchUser();       
+        const { userData, loading } = useFetchUser();
+       
     }
   return (
     <div className='relative'>

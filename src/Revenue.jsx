@@ -5,8 +5,6 @@ import useRevenueData from './hooks/useRevenueData';
 const Revenue = () => {
     const { data, loading } = useRevenueData('/wallet');
 
-    console.log("data fetched", data);
-
     if (loading) {
         return <div>Loading...</div>;
     }

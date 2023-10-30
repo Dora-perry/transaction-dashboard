@@ -4,7 +4,6 @@ import useRevenueData from './hooks/useRevenueData';
 
 const Charts = () => {
     const { data, loading } = useRevenueData('/wallet');
-    console.log("data fetched", data);
     const { balance} = data;
 
 

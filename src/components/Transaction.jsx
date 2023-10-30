@@ -2,10 +2,14 @@ import React, { useState } from 'react'
 import download from '../assets/download.svg'
 import expand from '../assets/expand_more.svg'
 import Modal from './Modal'
+import TransactionList from './TransactionList'
+import useRevenueData from '../hooks/useRevenueData'
+
 
 const Transaction = () => {
     const[isOpenModal, setIsModalOpen] = useState(false)
-    
+    const {data, loading} = useRevenueData('/transactions')
+    console.log(data);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -20,7 +24,7 @@ const Transaction = () => {
     <div className="flex flex-col pt-20">
     <div className="flex justify-between">
       <div className="text-neutral-900 flex flex-col ">
-        <p className="font-[degular] font-bold text-[18px]">24 Transactions</p>
+        <p className="font-[degular] font-bold text-[18px]">{data.length} Transactions</p>
         <p className="font-[degular] text-[10px] text-gray-600">Your transactions for the last 7 days</p>
       </div>
       <div className="flex gap-2">
@@ -36,7 +40,7 @@ const Transaction = () => {
       </div>
     </div>
     <div className="w-full border-t mt-4 border-gray-300" />
-    {/* <TransactionsList/> */}
+    <TransactionList/>
   </div>
   )
 }
