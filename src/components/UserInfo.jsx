@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import menu from '../assets/menu.svg'
+import useFetchUser from '../hooks/useFetchUser';
 
 const UserInfo = () => {
     const [isOpen, setIsOpen]= useState(false);
     const toggleDropdown = ()=>{
         setIsOpen(!isOpen)
+        const { userData, loading } = useFetchUser();       
     }
   return (
     <div className='relative'>

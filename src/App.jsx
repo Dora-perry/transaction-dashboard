@@ -1,37 +1,21 @@
-import React, { useState } from 'react';
-import Button from './components/Button';
-import Modal from './components/Modal';
-import download from './assets/download.svg';
+import { Route, Routes } from 'react-router-dom'
+import AppHome from './page/AppHome'
 
-function App() {
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const handleButtonClick = () => {
-    setModalVisible(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalVisible(false);
-  };
-
+const App = () => {
   return (
-    <div className="">
-      <Button
-        label="Filter"
-        icon={download}
-        onClick={handleButtonClick}
-        className="border w-[80px] h-[5px] rounded-[100px]"
-      />
-
-      {modalVisible && <Modal handleClose={handleCloseModal} />}
-    </div>
-  );
+    <div>
+     <Routes>
+  <Route path="/" element={<AppHome />} />
+</Routes>
+  </div>
+  )
 }
 
-export default App;
+export default App
 
 
- {/* <Navbar/> */}
-    {/* <Charts/> */}
-    {/* <Revenue/> */}
-    {/* <FilterModal/> */}
+
+
+
+
+

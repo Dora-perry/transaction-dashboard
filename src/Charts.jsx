@@ -1,75 +1,39 @@
 import React from 'react'
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
+import line from './assets/Line.png'
+import useRevenueData from './hooks/useRevenueData';
 
 const Charts = () => {
-    const data = [
-        {
-          name: 'Page A',
-          uv: 4000,
-          pv: 2400,
-          amt: 2400,
-        },
-        {
-          name: 'Page B',
-          uv: 3000,
-          pv: 1398,
-          amt: 2210,
-        },
-        {
-          name: 'Page C',
-          uv: 2000,
-          pv: 9800,
-          amt: 2290,
-        },
-        {
-          name: 'Page D',
-          uv: 2780,
-          pv: 3908,
-          amt: 2000,
-        },
-        {
-          name: 'Page E',
-          uv: 1890,
-          pv: 4800,
-          amt: 2181,
-        },
-        {
-          name: 'Page F',
-          uv: 2390,
-          pv: 3800,
-          amt: 2500,
-        },
-        {
-          name: 'Page G',
-          uv: 3490,
-          pv: 4300,
-          amt: 2100,
-        },
-      ];
-  return (
-    <div>
-        <ResponsiveContainer width="100%" height="100%">
-    <AreaChart
-      width={500}
-      height={400}
-      data={data}
-      margin={{
-        top: 10,
-        right: 30,
-        left: 0,
-        bottom: 0,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-    </AreaChart>
-  </ResponsiveContainer>
-  </div>
-  )
+    const { data, loading } = useRevenueData('/wallet');
+    console.log("data fetched", data);
+    const { balance} = data;
+
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+
+    return (
+        <div>
+          <div className="flex gap-16 items-center">
+            <div className="flex flex-col gap-2">
+              <p className="text-gray-600 font-[degularmedium] text-sm">Available Balance</p>
+              <p className="text-neutral-900 font-bold text-4xl font-[degularbold]">{balance}</p>
+            </div>
+            <button className="bg-neutral-900 w-[167px] text-white px-7 py-3.5 rounded-full font-[degularsemibold]">Withdraw</button>
+          </div>
+          <div className="pt-20 flex flex-col gap-4">
+            <img src={line} alt="line" />
+            <div className="flex flex-col gap-2">
+              <div className="w-full border-t border-gray-300" />
+              <div className="flex justify-between font-[degularmedium] text-base text-gray-600">
+                <p>Apr 1 , 2022</p>
+                <p>Apr 30 , 2022</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
 }
 
 export default Charts

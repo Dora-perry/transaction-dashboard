@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../assets/mainstack-logo.png'
 import homeIcon from '../assets/home.svg'
 import chartIcon from '../assets/insert_chart.svg'
@@ -11,6 +11,7 @@ import appbarList from '../assets/app-bar-list.png'
 import productIcon from '../assets/Product Icons.png'
 import productIcon2 from '../assets/ProductIcon.png'
 import productIcon1 from '../assets/ProductIcons.png'
+import AppsDropdown from './AppsDropdown'
 
 
 import './style.css'
@@ -19,48 +20,51 @@ import UserInfo from './UserInfo'
 
 
 const Navbar = () => {
+    const[isDropdown, setIsDropdown] = useState(false)
+    const [appsButtonClicked, setAppsButtonClicked] = useState(false);
+
+
 
     const handleClick = () => {
-        alert('Button clicked!');
-      };
- const menuList = [
-    {
-        icon: homeIcon,
-        name: "home"
-    },
-    {
-        icon: chartIcon,
-        name: "Analytics"
-    },
-    {
-        icon: paymentIcon,
-        name: "Revenue"
-    },
-    {
-        icon: groupIcon,
-        name: "CRM"
-    },
-    {
-        icon: widgetIcon,
-        name: "Apps"
-    }
- ] 
+        setIsDropdown(!isDropdown);
+        setAppsButtonClicked(!appsButtonClicked);
+      }; 
 
   return (
-    <div className='fixed w-[1200px] h-[64px] flex justify-between mx-auto items-center px-4 bg-[#FFF] border rounded-[100px] box-shadow' >
-        <div>
+      <div className='sticky top-0 bg-white'>
+        <div className='px-4 pt-4'>
+            <div className='realative'>
+               <div className=' h-[64px] flex justify-between items-center bg-[#FFF] border rounded-[100px] p-2 shadow' >
+        <div >
             <img src={logo} alt="logo" />
         </div>
-        <ul className='flex '>
-            {menuList.map((item, index)=> (
-                <li key={index} className='px-5'>
-                    <div className='flex space-x-1'>
-                    <img src={item.icon} alt={item.name} />
-                    <span className=''>{item.name}</span>
-                    </div>
-                   
-                </li>
-            ))}
+       <ul className='flex'>
+        <li className='flex space-x-1 items-center cursor-pointer hover:bg-gray-200 rounded-full p-2 text-gray-600'>
+            <img src={homeIcon} alt="home" />
+            <p>Home</p>
+        </li>
+        <li className='flex space-x-1 items-center cursor-pointer hover:bg-gray-200 rounded-full p-2 text-gray-600'>
+            <img src={chartIcon} alt="home" />
+            <p>Analytics</p>
+        </li>
+        <li className='flex space-x-1 items-center cursor-pointer hover:bg-gray-200 rounded-full p-2 text-gray-600'>
+            <img src={paymentIcon} alt="home" />
+            <p>Revenue</p>
+        </li>
+        <li className='flex space-x-1 items-center cursor-pointer hover:bg-gray-200 rounded-full p-2 text-gray-600'>
+            <img src={groupIcon} alt="home" />
+            <p>CRM</p>
+        </li>
+        <li>
+         {/* <div className={`flex items-center p-2 gap-1 rounded-full cursor-pointer ${appsButtonClicked ? "bg-neutral-900" : "hover:bg-gray-200"}`}
+          onClick={handleClick}>
+                    <img src={widgetIcon} alt="home" />
+            <p className={`font-[degularsemibold] text-base ${appsButtonClicked ? "text-white" : "text-gray-600"}`}>
+                App {appsButtonClicked ? " | Link in Bio" : ""}
+             </p>
+            {appsButtonClicked && <img src={expand} alt="expand" />}
+              </div> */}
+                  </li>
         </ul>
         <ul className='flex gap-2 items-center justify-center'>
            <li><img src={notificationIcon} alt="notification" /></li>
@@ -76,6 +80,9 @@ const Navbar = () => {
                 <div><img src={productIcon1} alt="" /></div>
                 <div><img src={productIcon2} alt="" /></div>
             
+        </div>
+             </div>
+            </div>
         </div>
     </div>
   )
