@@ -40,7 +40,7 @@ const Modal = ({ onClose, isOpen }) => {
           <h2 className="text-[16px] font-bold mb-4">Filter </h2>
           <IoIosClose onClick={onClose} />
         </div>
-        {/* Filter options */}
+        
         <div>
           <div className="flex gap-2 mb-4">
             <div className="border rounded-[100px] h-7 px-2 flex items-center justify-center text-[10px] font-bold">

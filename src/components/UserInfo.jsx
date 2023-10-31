@@ -19,7 +19,7 @@ const UserInfo = () => {
     const firstInitial = data && data.first_name ? data.first_name.charAt(0) : '';
     const lastInitial = data && data.last_name ? data.last_name.charAt(0) : '';
     const initials = `${firstInitial}${lastInitial}`
-    
+
   return (
     <div className='relative'>
         <div className='p-1 pl-1 flex pr-2 items-center rounded-[100px] bg-gray-100 gap-2 ' onClick={toggleDropdown}>
@@ -27,7 +27,7 @@ const UserInfo = () => {
         <span><img src={menu} alt="menu" /></span>
         </div>
         {isOpen && (
-                <div className='absolute w-80 h-200 top-11 right-0 mt-2 bg-white border border-gray-300 p-2 rounded shadow pt-8 pl-5'>
+                <div className='absolute w-80 h-200 top-11 right-0 mt-2 bg-white  border-gray-300 p-2 rounded-[16px] shadow pt-8 pl-5'>
                     {/* Dropdown content */}
                     <ul>
                        <li className='mb-8'> 
