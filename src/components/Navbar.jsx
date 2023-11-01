@@ -8,9 +8,10 @@ import notificationIcon from '../assets/notifications.svg'
 import chatIcon from '../assets/chat.svg'
 import paymentIcon from '../assets/payments.svg'
 import appbarList from '../assets/app-bar-list.svg'
-import productIcon from '../assets/Product Icons.svg'
-import productIcon2 from '../assets/ProductIcon.svg'
-import productIcon1 from '../assets/ProductIcons.svg'
+import product from '../assets/product.svg'
+// import productIcon from '../assets/Product Icons.svg'
+// import productIcon2 from '../assets/ProductIcon.svg'
+// import productIcon1 from '../assets/ProductIcons.svg'
 import AppsDropdown from './AppsDropdown'
 
 
@@ -22,12 +23,16 @@ import UserInfo from './UserInfo'
 const Navbar = () => {
     const[isDropdown, setIsDropdown] = useState(false)
     const [appsButtonClicked, setAppsButtonClicked] = useState(false);
+    const [isOpen, setIsOpen]= useState(false);
+
 
 
 
     const handleClick = () => {
         setIsDropdown(!isDropdown);
         setAppsButtonClicked(!appsButtonClicked);
+        setIsOpen(false)
+
       }; 
 
   return (
@@ -62,22 +67,22 @@ const Navbar = () => {
              {appsButtonClicked ? "Home" : "Apps"}
              </p>
               </div>
-             {isDropdown && <AppsDropdown />} 
+             {isDropdown && <AppsDropdown  />} 
                   </li>
         </ul>
         <ul className='flex gap-4 items-center justify-center'>
            <li><img src={notificationIcon} alt="notification" /></li>
            <li><img src={chatIcon} alt="chat" /></li>
-           <li><UserInfo/></li>
+           <li><UserInfo isOpen={isOpen} setIsOpen={setIsOpen} setIsDropdown={setIsDropdown}/></li>
 
         </ul>
 
         <div className='flex flex-col left-4 fixed top-[39%] items-center shadow rounded-full pb-2'>
             
                 <div className='mb-3' ><img src={appbarList} alt="appbar"/></div>
-                <div className='mb-4'><img src={productIcon} alt=""/></div>
-                <div className='mb-4'><img src={productIcon1} alt="" /></div>
-                <div><img src={productIcon2} alt="" /></div>
+                <div className='mb-4'><img src={product} alt=""/></div>
+                <div className='mb-4'><img src="" alt="" /></div>
+                <div><img src="" alt="" /></div>
             
         </div>
              </div>

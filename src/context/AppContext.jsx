@@ -8,6 +8,7 @@ const AppProvider =({children}) => {
     const [endDate, setEndDate] = useState(new Date());  
     const [transactionType, setTransactionType] = useState('');
     const [transactionStatus, setTransactionStatus] = useState([]);
+    const[transactionTypeArray, setTransactionTypeArray] = useState([])
 
   return(
     <AppContext.Provider value={{
@@ -18,7 +19,10 @@ const AppProvider =({children}) => {
         transactionStatus,
         setTransactionStatus,
         transactionType,
-        setTransactionType
+        setTransactionType,
+       transactionTypeArray, 
+       setTransactionTypeArray
+
     }}>{children}</AppContext.Provider>
   )
 

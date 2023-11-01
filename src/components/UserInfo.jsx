@@ -10,10 +10,10 @@ import useRevenueData from '../hooks/useRevenueData';
 
 
 
-const UserInfo = () => {
-    const [isOpen, setIsOpen]= useState(false);
+const UserInfo = ({isOpen, setIsOpen, setIsDropdown}) => {    
     const toggleDropdown = ()=>{
-        setIsOpen(!isOpen)    
+        setIsOpen(!isOpen)  
+        setIsDropdown(false)  
     }
     const {data} = useRevenueData('/user')
     const firstInitial = data && data.first_name ? data.first_name.charAt(0) : '';
@@ -22,7 +22,7 @@ const UserInfo = () => {
 
   return (
     <div className='relative'>
-        <div className='p-1 pl-1 flex pr-2 items-center rounded-[100px] bg-gray-100 gap-2 ' onClick={toggleDropdown}>
+        <div className='p-1 pl-1 flex pr-2 items-center rounded-[100px] bg-gray-100 gap-2' onClick={toggleDropdown}>
         <div className='w-7 h-7 bg-[#131316] text-white flex items-center justify-center rounded-full text-[8px]'>{initials}</div>
         <span><img src={menu} alt="menu" /></span>
         </div>
@@ -70,9 +70,7 @@ const UserInfo = () => {
                       
                     </ul>
                 </div>
-            )}
-        
-        
+            )} 
     </div>
   )
 }

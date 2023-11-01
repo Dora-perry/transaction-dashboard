@@ -4,11 +4,13 @@ import expand from '../assets/expand_more.svg'
 import Modal from './Modal'
 import TransactionList from './TransactionList'
 import useRevenueData from '../hooks/useRevenueData'
+import { useAppContext } from '../context/AppContext'
 
 
 const Transaction = () => {
     const[isOpenModal, setIsModalOpen] = useState(false)
     
+    const {startDate, setStartDate, endDate, setEndDate} = useAppContext()
     const {data, loading} = useRevenueData('/transactions')
 
     const handleStartDateChange = (date) => {

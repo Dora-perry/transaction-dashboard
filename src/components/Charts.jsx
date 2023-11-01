@@ -1,6 +1,6 @@
 import React from 'react'
-import line from './assets/Line.png'
-import useRevenueData from './hooks/useRevenueData';
+import line from '../assets/Line.png'
+import useRevenueData from '../hooks/useRevenueData';
 
 const Charts = () => {
     const { data, loading } = useRevenueData('/wallet');

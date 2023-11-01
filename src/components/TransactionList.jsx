@@ -13,7 +13,7 @@ const TransactionList = () => {
     <div className='mt-5'>
         {data.map((item, index)=>(
              item.metadata ? (
-                <div key={item.payment_reference} className='flex justify-between mb-4'>
+                <div key={index} className='flex justify-between mb-4'>
              <div className='flex gap-2'>
                  <span className='h-8 w-8 rounded-full flex items-center justify-center bg-[#E3FCF2]'><img src={callReceived} alt="" /></span>
                  <div className=''>
@@ -26,13 +26,12 @@ const TransactionList = () => {
                  <p className='text-[8px] text-[#56616B]'> {item.date}</p>
               </div>
          </div>
-             ) : (<div className='flex justify-between mb-4'>
+             ) : (<div className='flex justify-between mb-4' key={index}>
              <div className='flex gap-2'>
                  <span className='h-8 w-8 rounded-full flex items-center justify-center bg-[#F9E3E0]'><img src={callMade} alt="" /></span>
-                 <div className=''>
+                 <div>
                      <p className='text-[12px] mb-1'>{item.type}</p>
-                     <p className='text-[8px] text-[#56616B]'>{item.status}</p>
-                 </div>
+                     <p className={item.status === "successful" ? "text-green-600 text-[8px]" : "text-[#F9E3E0] text-[8px]"}>{item.status}</p>                 </div>
              </div>
               <div>
                  <p className='text-[12px] mb-1 font-bold'>USD {item.amount}</p>

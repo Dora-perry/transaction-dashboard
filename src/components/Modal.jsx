@@ -1,46 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { IoIosClose } from "react-icons/io";
 import { useAppContext } from "../context/AppContext";
-import expand from '../assets/expand_more.svg'
+import expand from "../assets/expand_more.svg";
+import ModalDropdown from "./ModalDropdown";
+
 const Modal = ({ onClose, isOpen }) => {
   const [startDateOpen, setStartDateOpen] = useState(false);
   const [endDateOpen, setEndDateOpen] = useState(false);
-  const [value, onChange] = useState();
+  const [transactionTypeClicked, setTransactionTypeClicked] = useState(false);
+  const [transactionTypeList, setTransactionList] = useState([
+    "Store Transactions",
+    "Get Tipped",
+    "Withdrawals",
+    "Chargebacks",
+    "Cashbacks",
+    "Refer & Earn",
+  ]);
+
+  const handleTransactionTypeClick = () => {
+    setTransactionTypeClicked(!transactionTypeClicked);
+  };
 
   if (!isOpen) return null;
   const {
     startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
-    transactionStatus,
-    setTransactionStatus,
-    transactionType,
-    setTransactionType,
-  } = useAppContext();
+        setStartDate,
+        endDate,
+        setEndDate,
+         setTransactionTypeArray
 
-  const transactionTypeList = [
-    "Store Transactions",
-    "Get Tipped",
-    "Withdrawals",
-    "ChargeBacks",
-    "cashbacks",
-    "refer and earn",
-  ];
+  } = useAppContext();
+  
+
   const textTransFormPipe = (item, length) => {
     return item.length > length ? item.substring(0, length) + "..." : item;
   };
   console.log(startDate, endDate);
   return (
-    <div className="fixed top-2 right-2 shadow flex  justify-center items-center w-[360px] z-50 bg-white bg-opacity-30">
+    <div className=" fixed top-2 right-2 shadow-2xl rounded-3xl overflow-auto flex  justify-center items-center w-[360px] z-50 bg-white bg-opacity-30">
       <div className="bg-white p-4 rounded-[10px] shadow-lg w-[100%]">
         <div className="flex justify-between">
           <h2 className="text-[16px] font-bold mb-4">Filter </h2>
           <IoIosClose onClick={onClose} />
         </div>
-        
+
         <div>
           <div className="flex gap-2 mb-4">
             <div className="border rounded-[100px] h-7 px-2 flex items-center justify-center text-[10px] font-bold">
@@ -87,18 +92,30 @@ const Modal = ({ onClose, isOpen }) => {
           </div>
           <div className="flex flex-col gap-2 mb-4">
             <p className="flex text-[10px] font-bold"> Transaction Type</p>
-            <div className="bg-gray-100 flex px-3 justify-between rounded-[8px] py-3 text-[8px] items-center capitalize">
-              {textTransFormPipe(transactionTypeList.join(", "), 60)}
-              <div><img src={expand} alt="expand" /></div>
+            <div
+              onClick={handleTransactionTypeClick}
+              className="bg-gray-100 flex px-3 justify-between rounded-[8px] py-3 text-[8px] items-center capitalize"
+            >
+              {textTransFormPipe(transactionTypeList.length > 0 && transactionTypeList.join(", "), 60)}
+              <div>
+                <img src={expand} alt="expand" />
+              </div>
             </div>
           </div>
+          {transactionTypeClicked && (
+            <ModalDropdown
+              transactionTypeList={transactionTypeList}
+              setTransactionList={setTransactionList}
+            />
+          )}
           <div className="flex flex-col gap-2 mb-80">
             <p className="text-[10px] font-bold"> Transaction Status</p>
             <div className="bg-gray-100 flex px-3 justify-between rounded-[8px] py-3 text-[8px] items-center">
               Successful, Pending, Failed
-              <div><img src={expand} alt="expand" /></div>
+              <div>
+                <img src={expand} alt="expand" />
+              </div>
             </div>
-            
           </div>
           <div>
             {startDateOpen && (
@@ -116,7 +133,7 @@ const Modal = ({ onClose, isOpen }) => {
           </div>
           <div className="flex gap-2 ">
             <button className="flex items-center w-[180px]  justify-center text-black rounded-full border">
-                Clear
+              Clear
             </button>
             <button className="flex items-center w-[180px] justify-center bg-[#131316] text-white py-2 rounded-full">
               Apply
