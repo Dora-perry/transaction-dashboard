@@ -9,7 +9,7 @@ import chatIcon from "../assets/chat.svg";
 import paymentIcon from "../assets/payments.svg";
 import { Tooltip } from "react-tooltip";
 import appbarList from "../assets/app-bar-list.svg";
-import product from "../assets/product.svg";
+import product from "../assets/Product.svg";
 import media from "../assets/media.svg";
 import kit from "../assets/kit.svg";
 import AppsDropdown from "./AppsDropdown";
@@ -20,7 +20,6 @@ import Iconsc from "../assets/colored/Pi.svg";
 import Pi from "../assets/colored/ProductIconc.svg";
 import Prod from "../assets/colored/Prod.svg";
 import {BsChevronDown} from 'react-icons/bs'
-import {MdWidgets} from 'react-icons/md'
 
 const Navbar = () => {
   const [isDropdown, setIsDropdown] = useState(false);
