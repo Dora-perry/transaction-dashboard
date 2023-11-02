@@ -32,7 +32,7 @@ const AppsDropdown = () => {
         ].map((item, index) => (
           <li className="py-2 px-1" key={index}>
             <div
-              className={`p-2 hover:shadow flex gap-2 rounded-[10px] relative ${item.class}`}
+              className={`p-2 hover:border flex gap-2 rounded-[10px] relative ${item.class}`}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={() => handleMouseLeave(index)}
             >

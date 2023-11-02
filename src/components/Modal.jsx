@@ -5,11 +5,14 @@ import { IoIosClose } from "react-icons/io";
 import { useAppContext } from "../context/AppContext";
 import expand from "../assets/expand_more.svg";
 import ModalDropdown from "./ModalDropdown";
+import TransactionStatus from "./TransactionStatus";
+import useRevenueData from "../hooks/useRevenueData";
 
 const Modal = ({ onClose, isOpen }) => {
   const [startDateOpen, setStartDateOpen] = useState(false);
   const [endDateOpen, setEndDateOpen] = useState(false);
   const [transactionTypeClicked, setTransactionTypeClicked] = useState(false);
+  const [transactionStatusClicked, setTransactionStatusClicked] = useState(false);
   const [transactionTypeList, setTransactionList] = useState([
     "Store Transactions",
     "Get Tipped",
@@ -18,21 +21,34 @@ const Modal = ({ onClose, isOpen }) => {
     "Cashbacks",
     "Refer & Earn",
   ]);
+  const [hasDropdownSelection, setHasDropdownSelection] = useState(false);
+  
 
+  const [transactionStatusList, setTransactionStatusList] = useState([
+    "Successful",
+    "Pending",
+    "Failed",
+  ]);
+  const { data, loading, applyFilter } = useRevenueData("/transactions");
   const handleTransactionTypeClick = () => {
     setTransactionTypeClicked(!transactionTypeClicked);
+    setTransactionStatusClicked(false);
+    setHasDropdownSelection(true); 
+  };
+  const handleTransactionStatusClick = () => {
+    setTransactionStatusClicked(!transactionStatusClicked);
+    setTransactionTypeClicked(false);
+    setHasDropdownSelection(true); 
   };
 
   if (!isOpen) return null;
   const {
     startDate,
-        setStartDate,
-        endDate,
-        setEndDate,
-         setTransactionTypeArray
-
+    setStartDate,
+    endDate,
+    setEndDate,
+    setTransactionTypeArray,
   } = useAppContext();
-  
 
   const textTransFormPipe = (item, length) => {
     return item.length > length ? item.substring(0, length) + "..." : item;
@@ -69,7 +85,7 @@ const Modal = ({ onClose, isOpen }) => {
                   setStartDateOpen(!startDateOpen);
                   setEndDateOpen(false);
                 }}
-                className="bg-gray-100 flex px-3 justify-between rounded-[8px] p-2 text-[8px] items-center"
+                className="bg-gray-100 flex px-3 justify-between rounded-[8px] p-2 text-[8px] items-center cursor-pointer"
               >
                 {startDate.toISOString()}
                 <span>
@@ -81,7 +97,7 @@ const Modal = ({ onClose, isOpen }) => {
                   setEndDateOpen(!endDateOpen);
                   setStartDateOpen(false);
                 }}
-                className="bg-gray-100 flex px-3 justify-between rounded-[8px] p-2 text-[8px] items-center"
+                className="bg-gray-100 flex px-3 justify-between rounded-[8px] p-2 text-[8px] items-center cursor-pointer"
               >
                 {endDate.toISOString()}{" "}
                 <span>
@@ -90,13 +106,31 @@ const Modal = ({ onClose, isOpen }) => {
               </div>
             </div>
           </div>
+          {startDateOpen && (
+            <Calendar
+              onChange={(date) => setStartDate(date)}
+              value={startDate ? new Date(startDate) : null}
+              className="absolute top-[165px] right-4 bg-white shadow-md p-4 w-[330px] rounded-[15px] border-0"
+            />
+          )}
+          {endDateOpen && (
+            <Calendar
+              onChange={(date) => setEndDate(date)}
+              value={endDate ? new Date(endDate) : null}
+              className="absolute top-[165px] right-4 bg-white shadow-md p-4 w-[330px] rounded-[15px] border-0"
+            />
+          )}
           <div className="flex flex-col gap-2 mb-4">
             <p className="flex text-[10px] font-bold"> Transaction Type</p>
             <div
               onClick={handleTransactionTypeClick}
               className="bg-gray-100 flex px-3 justify-between rounded-[8px] py-3 text-[8px] items-center capitalize"
             >
-              {textTransFormPipe(transactionTypeList.length > 0 && transactionTypeList.join(", "), 60)}
+              {textTransFormPipe(
+                transactionTypeList.length > 0 &&
+                  transactionTypeList.join(", "),
+                60
+              )}
               <div>
                 <img src={expand} alt="expand" />
               </div>
@@ -110,34 +144,40 @@ const Modal = ({ onClose, isOpen }) => {
           )}
           <div className="flex flex-col gap-2 mb-80">
             <p className="text-[10px] font-bold"> Transaction Status</p>
-            <div className="bg-gray-100 flex px-3 justify-between rounded-[8px] py-3 text-[8px] items-center">
-              Successful, Pending, Failed
+            <div
+              onClick={handleTransactionStatusClick}
+              className="bg-gray-100 flex px-3 justify-between rounded-[8px] py-3 text-[8px] items-center"
+            >
+              {textTransFormPipe(
+                transactionStatusList.length > 0 &&
+                  transactionStatusList.join(", "),
+                60
+              )}
               <div>
                 <img src={expand} alt="expand" />
               </div>
             </div>
-          </div>
-          <div>
-            {startDateOpen && (
-              <Calendar
-                onChange={(date) => setStartDate(date)}
-                value={startDate ? new Date(startDate) : null}
-              />
-            )}
-            {endDateOpen && (
-              <Calendar
-                onChange={(date) => setEndDate(date)}
-                value={endDate ? new Date(endDate) : null}
+
+            {transactionStatusClicked && (
+              <TransactionStatus
+                transactionStatusList={transactionStatusList}
+                setTransactionStatus={setTransactionStatusList}
               />
             )}
           </div>
+          <div></div>
+
           <div className="flex gap-2 ">
             <button className="flex items-center w-[180px]  justify-center text-black rounded-full border">
               Clear
             </button>
-            <button className="flex items-center w-[180px] justify-center bg-[#131316] text-white py-2 rounded-full">
-              Apply
-            </button>
+            <button
+            className={`flex items-center w-[180px] justify-center  py-2 rounded-full ${
+              hasDropdownSelection ? "bg-[#131316] text-white" : "bg-[#EFF1F6]"
+            }`}
+          >
+            Apply
+          </button>
           </div>
         </div>
       </div>
